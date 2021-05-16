@@ -1,6 +1,6 @@
 @echo on
 cd /d %~dp0
-yarn
+
 echo.==================
 node sync.js
 echo.================
