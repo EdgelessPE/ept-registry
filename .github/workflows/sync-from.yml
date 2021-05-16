@@ -28,7 +28,7 @@ jobs:
               ref: script-sync-from
               path: scripts   
       - name: debug print
-        run: dir /s .
+        run: dir .
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.5
       - uses: actions/checkout@v2
