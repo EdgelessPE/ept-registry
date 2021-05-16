@@ -36,19 +36,9 @@ jobs:
               path: .\mirrors
 
         # 缓存yarn
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-      - name: install
-        run: |
-          cd .\scripts
-          yarn
-          cd ..
-      # Runs a set of commands using the runners shell
       - name: sync registry
         run: .\setup.bat
+
       - uses: ad-m/github-push-action@v0.6.0
         with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
