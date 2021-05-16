@@ -8,8 +8,10 @@ echo.OK
 
 cd /d .\mirrors
 dir 
+
 git config --local user.email "bot@edgeless.top"
 git config --local user.name "SyncBot"
+git add .
 git commit -m "Sync from source" -a
 git push origin
 cd .. 
