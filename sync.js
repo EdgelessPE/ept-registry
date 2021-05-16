@@ -13,15 +13,15 @@ if (!fs_extra_1.default.pathExistsSync("./mirrors"))
     fs_extra_1.default.mkdirSync("./mirrors");
 async function er(e) {
     if (e.type == "FILE") {
-        if (!fs_extra_1.default.pathExistsSync(`./mirrors/${e.path}`))
-            fs_extra_1.default.mkdirSync(`./mirrors/${e.path}`);
+        if (!fs_extra_1.default.pathExistsSync(`./${e.path}`))
+            fs_extra_1.default.mkdirSync(`./${e.path}`);
         new worker_threads_1.Worker(__filename, {
             workerData: ["", e]
         });
     }
     else if (e.type == "FOLDER") {
-        if (!fs_extra_1.default.pathExistsSync("./mirrors/" + e.path + e.name))
-            fs_extra_1.default.mkdirSync("./mirrors/" + e.path + e.name);
+        if (!fs_extra_1.default.pathExistsSync("./"+ e.path + e.name))
+            fs_extra_1.default.mkdirSync("./" + e.path + e.name);
         await Sleep(1000);
         let indexe = await axios_1.default.get(pp + encodeURIComponent(e.path + e.name));
         if (indexe.data.code != 0)
@@ -52,10 +52,10 @@ async function er(e) {
     }
 })();
 async function worker(cur, uu) {
-    if (!fs_extra_1.default.pathExistsSync(`./mirrors/${uu.path}`))
-        fs_extra_1.default.mkdirSync(`./mirrors/${uu.path}`);
+    if (!fs_extra_1.default.pathExistsSync(`./${uu.path}`))
+        fs_extra_1.default.mkdirSync(`./${uu.path}`);
     console.log("worker", uu, "start");
-    console.log(!fs_extra_1.default.pathExistsSync(`./mirrors/${uu.path}`));
+    console.log(!fs_extra_1.default.pathExistsSync(`./${uu.path}`));
     let ccc;
     try {
         ccc = await axios_1.default.get(encodeURI(uu.url), {
@@ -73,7 +73,7 @@ async function worker(cur, uu) {
     let ate = 0;
     console.log("worker", "Current: ", uu);
     console.log("worker", "Length: ", length);
-    let stream = fs_extra_1.default.createWriteStream(path_1.default.resolve('./mirrors', uu.path, uu.name));
+    let stream = fs_extra_1.default.createWriteStream(path_1.default.resolve('./', uu.path, uu.name));
     ccd.on("data", (chunk) => {
         ate += chunk.length;
         stream.write(chunk);
